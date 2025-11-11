@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frosty Delights 🍧</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    body{background-color:#fffdfc;color:#333;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    nav{width:100%;background:#ffedf2;display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;box-shadow:0 4px 8px rgba(0,0,0,0.05);position:fixed;top:0;z-index:1000;}
+    .logo{font-size:1.8rem;font-weight:700;color:#ff6b8b;}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;}
+    .nav-links a{font-weight:500;transition:color .3s;}
+    .nav-links a:hover{color:#ff6b8b;}
+    .menu-btn{display:none;font-size:1.8rem;cursor:pointer;color:#ff6b8b;}
+    @media(max-width:768px){
+      .menu-btn{display:block;}
+      .nav-links{position:absolute;top:70px;right:0;background:#ffedf2;flex-direction:column;width:100%;
+        text-align:center;display:none;}
+      .nav-links.active{display:flex;animation:slideDown .3s ease;}
+    }
+
+    .hero{height:100vh;background:linear-gradient(135deg,#ffdee9,#9dece9);
+      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+      padding:2rem;margin-top:70px;}
+    .hero h1{font-size:3.2rem;color:#ff6b8b;animation:fadeInDown 1s ease;}
+    .hero p{margin-top:.8rem;font-size:1.2rem;color:#444;animation:fadeIn 1.5s ease;}
+    .cta{margin-top:1.5rem;display:flex;gap:1rem;}
+    .btn{padding:.8rem 1.8rem;border-radius:30px;border:2px solid #ff6b8b;font-weight:600;transition:.3s;}
+    .btn.primary{background:#ff6b8b;color:white;}
+    .btn.primary:hover{background:#ff8ea2;transform:translateY(-2px);}
+    .btn.secondary{background:transparent;color:#ff6b8b;}
+    .btn.secondary:hover{background:#ff6b8b;color:white;transform:translateY(-2px);}
+    footer{background:#ffedf2;text-align:center;padding:1rem;color:#555;}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">🍨 Frosty Delights</div>
+    <ul class="nav-links">
+      <li><a href="iceindex.html">Home</a></li>
+      <li><a href="icemenu.html">Menu</a></li>
+      <li><a href="iceabout.html">About</a></li>
+    
+    </ul>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="hero">
+    <h1>Chill Out with Every Scoop!</h1>
+    <p>Discover handcrafted ice creams made with love and joy.</p>
+    <div class="cta">
+      <!-- 👇 This button opens the Menu page -->
+      <a href="icemenu.html" class="btn primary">Explore Menu</a>
+      <a href="iceabout.html" class="btn secondary">Learn More</a>
+    </div>
+  </section>
+
+  <footer>© 2025 Frosty Delights | Made with ❤️ and Ice Cream</footer>
+
+  <script>
+    function toggleMenu(){
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

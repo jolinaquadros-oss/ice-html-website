@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frosty Delights | Explore Menu</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    body{background:#fffafc;color:#333;overflow-x:hidden;}
+
+    /* Navbar */
+    nav{
+      width:100%;background:#ffedf2;display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;box-shadow:0 4px 8px rgba(0,0,0,0.05);
+      position:fixed;top:0;z-index:1000;
+    }
+    .logo{font-size:1.8rem;font-weight:700;color:#ff6b8b;}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;}
+    .nav-links a{text-decoration:none;color:#333;font-weight:500;transition:.3s;}
+    .nav-links a:hover{color:#ff6b8b;}
+    .menu-btn{display:none;font-size:1.8rem;cursor:pointer;color:#ff6b8b;}
+    @media(max-width:768px){
+      .menu-btn{display:block;}
+      .nav-links{position:absolute;top:70px;right:0;background:#ffedf2;flex-direction:column;width:100%;
+        text-align:center;display:none;}
+      .nav-links.active{display:flex;animation:slideDown .3s ease;}
+    }
+
+    /* Hero Section */
+    header{text-align:center;padding:7rem 2rem 2rem;background:linear-gradient(135deg,#ffdee9,#9dece9);}
+    header h1{color:#ff6b8b;font-size:2.8rem;margin-bottom:.5rem;}
+    header p{color:#444;font-size:1.1rem;}
+
+    /* Menu Grid */
+    .menu-section{
+      max-width:1200px;margin:3rem auto;padding:0 2rem;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;
+    }
+    .menu-item{
+      background:white;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      overflow:hidden;text-align:center;padding:1.5rem;transition:.3s;
+    }
+    .menu-item:hover{transform:translateY(-5px);}
+    .menu-item img{width:100%;height:180px;object-fit:cover;border-radius:15px;}
+    .menu-item h3{margin:.8rem 0;color:#ff6b8b;}
+    .menu-item p{color:#777;font-size:.9rem;margin-bottom:.8rem;}
+    .menu-item span{display:block;font-weight:600;margin-bottom:1rem;color:#333;}
+    .btn{
+      background:#ff6b8b;color:white;border:none;border-radius:30px;
+      padding:.6rem 1.5rem;font-weight:600;cursor:pointer;transition:.3s;
+    }
+    .btn:hover{background:#ff8ea2;}
+
+    /* Cart Button */
+    .cart-btn{
+      display:flex;align-items:center;justify-content:center;
+      width:220px;margin:3rem auto 4rem;
+      background:#ff6b8b;color:white;border:none;padding:1rem 2rem;
+      border-radius:40px;font-size:1.1rem;font-weight:600;cursor:pointer;
+      transition:.3s;text-decoration:none;box-shadow:0 4px 8px rgba(255,107,139,0.3);
+    }
+    .cart-btn:hover{background:#ff8ea2;transform:translateY(-2px);}
+    #cart-count{
+      background:white;color:#ff6b8b;font-size:0.9rem;font-weight:600;
+      margin-left:8px;border-radius:50%;padding:2px 8px;
+    }
+
+    footer{background:#ffedf2;text-align:center;padding:1rem;margin-top:3rem;color:#555;}
+
+    @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">🍨 Frosty Delights</div>
+    <ul class="nav-links">
+      <li><a href="iceindex.html">Home</a></li>
+      <li><a href="icemenu.html">Menu</a></li>
+      <li><a href="icecart.html">Cart</a></li>
+      <li><a href="iceabout.html">Learn More</a></li>
+    </ul>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <h1>Explore Our Delicious Menu</h1>
+    <p>Indulge in a scoop of pure happiness 🍧</p>
+  </header>
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="menu-item">
+      <img src="MANGO.jpg" alt="MANGO">
+      <h3>Mango Magic</h3>
+      <p>Sweet tropical mango with creamy texture.</p>
+      <span>₹150</span>
+      <button class="btn" onclick="addToCart('Mango Magic', 70, 'MANGO.jpg')">Add to Cart</button>
+    </div>
+    
+   <div class="menu-item">
+      <img src="MINT.jpg" alt="Minty Fresh">
+      <h3>Minty Fresh</h3>
+      <p>Cool mint flavor with dark chocolate chips.</p>
+      <span>₹240</span>
+      <button class="btn" onclick="addToCart('Minty Fresh', 240, 'MINT.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="CHOCO.jpg" alt="Chocolate Heaven">
+      <h3>Chocolate Heaven</h3>
+      <p>Rich chocolate ice cream with fudge chunks.</p>
+      <span>₹180</span>
+      <button class="btn" onclick="addToCart('Chocolate Heaven', 180, 'CHOCO.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="WATERMELCON.jpg" alt="Watermelon Concoction">
+      <h3>Watermelon Concoction</h3>
+      <p>Refreshing watermelon ice cream with a hint of mint.</p>
+      <span>₹140</span>
+      <button class="btn" onclick="addToCart('Watermelon Concoction', 140, 'WATERMELCON.jpg')">Add to Cart</button>
+    </div>
+
+   <div class="menu-item">
+      <img src="STRAW.jpg" alt="Strawberry Swirl">
+      <h3>Strawberry Swirl</h3>
+      <p>Classic strawberry cream with rich syrup.</p>
+      <span>₹160</span>
+      <button class="btn" onclick="addToCart('Strawberry Swirl', 160, 'STRAW.jpg')">Add to Cart</button>
+    </div>
+    <div class="menu-item">
+      <img src="TENDER.jpg" alt="Coconut Magic">
+      <h3>Coconut Magic</h3>
+      <p>Sweet tropical coconut with creamy texture.</p>
+      <span>₹220</span>
+      <button class="btn" onclick="addToCart('Coconut Magic', 220, 'TENDER.jpg')">Add to Cart</button>
+    </div>
+     <div class="menu-item">
+      <img src="BLUEBERRY.jpg" alt="Blueberry Bliss">
+      <h3>Blueberry Bliss</h3>
+      <p>Sweet and tangy blueberry ice cream.</p>
+      <span>₹200</span>
+      <button class="btn" onclick="addToCart('Blueberry Bliss', 200, 'BLUEBERRY.jpg')">Add to Cart</button>
+    </div>
+
+   <div class="menu-item">
+      <img src="ORANGE.jpg" alt="Orange Delight">
+      <h3>Orange Delight</h3>
+      <p>Refreshing orange ice cream with a zesty twist.</p>
+      <span>₹170</span>
+      <button class="btn" onclick="addToCart('Orange Delight', 170, 'ORANGE.jpg')">Add to Cart</button>
+    </div>
+      
+  </section>
+
+  <!-- Cart Button -->
+  <a href="icecart.html" class="cart-btn">🛒 View Cart <span id="cart-count">0</span></a>
+
+  <footer>© 2025 Frosty Delights | Happiness, one scoop at a time 🍨</footer>
+
+  <script>
+    function toggleMenu(){
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    // Update cart count badge
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    // Add item to cart
+    function addToCart(name, price, image) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.name === name);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to your cart! 🍦`);
+      updateCartCount();
+    }
+
+    updateCartCount();
+  </script>
+</body>
+</html>
