@@ -37,6 +37,27 @@
     }
     .quantity-controls button:hover{background:#ff8ea2;}
     .total{text-align:right;font-size:1.3rem;font-weight:600;margin-top:1rem;color:#333;}
+    
+    /* Form styles */
+    .customer-details{
+      background:white;margin-top:2rem;padding:1.5rem 2rem;border-radius:15px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+    .customer-details h2{
+      color:#ff6b8b;margin-bottom:1rem;text-align:center;
+    }
+    .customer-details label{
+      display:block;margin:0.5rem 0 0.2rem;font-weight:500;
+    }
+    .customer-details input, .customer-details textarea{
+      width:100%;padding:0.8rem;border:1px solid #ddd;border-radius:10px;
+      font-size:1rem;outline:none;transition:0.3s;
+    }
+    .customer-details input:focus, .customer-details textarea:focus{
+      border-color:#ff6b8b;box-shadow:0 0 5px rgba(255,107,139,0.3);
+    }
+    .customer-details textarea{resize:none;height:80px;}
+
     .place-order{
       display:block;margin:2rem auto 0;padding:1rem 2.5rem;
       background:#ff6b8b;color:white;border:none;border-radius:40px;
@@ -68,6 +89,18 @@
     <h1>Your Cart 🛒</h1>
     <div id="cart-items"></div>
     <div id="total" class="total"></div>
+
+    <!-- Customer details form -->
+    <div class="customer-details" id="customer-details">
+      <h2>Customer Details</h2>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number">
+      <label for="address">Delivery Address</label>
+      <textarea id="address" placeholder="Enter your address"></textarea>
+    </div>
+
     <button class="place-order" onclick="placeOrder()">Place Order</button>
   </main>
 
@@ -80,7 +113,10 @@
       if(cart.length === 0){
         cartContainer.innerHTML = `<p class="empty">Your cart is empty 🍦</p>`;
         document.getElementById('total').textContent = '';
+        document.getElementById('customer-details').style.display = 'none';
         return;
+      } else {
+        document.getElementById('customer-details').style.display = 'block';
       }
 
       let total = 0;
@@ -125,14 +161,30 @@
 
     function placeOrder(){
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+
       if(cart.length === 0){
         alert("Your cart is empty!");
         return;
       }
-      alert("🎉 Your order has been placed successfully!");
+
+      if(!name || !phone || !address){
+        alert("Please fill out all customer details before placing your order!");
+        return;
+      }
+
+      // Optional: Save customer info (if you want to use it later)
+      localStorage.setItem('customerDetails', JSON.stringify({ name, phone, address }));
+
+      alert(`🎉 Order placed successfully!\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`);
+
       document.querySelector('main').innerHTML = `
         <h1>🎉 Order Placed Successfully!</h1>
-        <p style="text-align:center;font-size:1.1rem;color:#555;margin-top:1rem;">Thank you for choosing Frosty Delights 🍨</p>
+        <p style="text-align:center;font-size:1.1rem;color:#555;margin-top:1rem;">
+          Thank you, ${name}! Your delicious treats will arrive soon 🍨
+        </p>
         <div style="text-align:center;">
           <a href="index.html" class="home-btn">🏠 Go to Home</a>
         </div>
